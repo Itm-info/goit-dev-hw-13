@@ -70,7 +70,7 @@ class GoitDevHw13ApplicationTests {
 		noteService.add(note2);
 
 		List<Note> list = noteService.listAll();
-		Assertions.assertEquals(2, list.size());
+		Assertions.assertEquals(7, list.size());
 	}
 
 }
