@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <center>
+        <table border="1">
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+            </tr>
+            <tr th:each="note: ${notes}">
+                <td><span th:text="${note.title}"></span></td>
+                <td><span th:text="${note.content}"></span></td>
+                <td>
+                    <form action="#" data-th-action="@{/note/edit}" method="get" target="_self">
+                        <button type="submit" name="id" th:value="${note.id}">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="#" data-th-action="@{/note/delete}" method="post" target="_self">
+                        <button type="submit" name="id" th:value="${note.id}"><img src="http://particletree.com/examples/buttons/cross.png" alt=""/>Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+</html>
