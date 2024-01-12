@@ -24,6 +24,8 @@ public class NoteService {
 
     }
 
+    public ConcurrentMap<Long, Note> getNotes() { return notes; }
+
     public List<Note> listAll() {
         List<Note> res = new ArrayList<>();
         if( ! notes.isEmpty() ) notes.forEach((l,n) -> res.add(n));
@@ -44,16 +46,22 @@ public class NoteService {
         return note;
     }
 
-    public void deleteById(long id) throws NullPointerException {
-        notes.remove(id);
+    public void deleteById(long id) throws NoteNotFoundException {
+        try {
+            notes.remove(id);
+        } catch (NullPointerException ex) { throw new NoteNotFoundException(id); }
     }
 
-    public void update(Note note) throws NullPointerException {
-        notes.computeIfPresent( note.getId(), (i,n) -> note );
+    public void update(Note note) throws NoteNotFoundException {
+        try {
+            notes.computeIfPresent( note.getId(), (i,n) -> note );
+        } catch (NullPointerException ex) { throw new NoteNotFoundException(note.getId()); }
     }
 
-    public Note getById(long id) throws NullPointerException {
-        return notes.get(id);
+    public Note getById(long id) throws NoteNotFoundException {
+        try {
+            return notes.get(id);
+        } catch (NullPointerException ex) { throw new NoteNotFoundException(id); }
     }
 
     private Note genRandomNote() {

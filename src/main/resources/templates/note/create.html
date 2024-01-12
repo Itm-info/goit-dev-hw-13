@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<center>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+        </tr>
+        <tr>
+            <form action="#" data-th-action="@{/note/create}" method="post" target="_self">
+            <td><input type="text" name="title" /></td>
+            <td><input type="text" name="content" /></td>
+            <td><button type="submit">Submit</button></td>
+            <td><button type="button" th:onclick="|location.href = '@{/note/list}'|">Cancel</button>
+        </tr>
+    </table>
+</center>
+</body>
+</html>
